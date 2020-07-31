@@ -1,5 +1,4 @@
 import React, { Component } from 'react'; //enables JSX 
-import logo from './logo.svg';
 import './App.css';
 
 //using class gives access to state 
@@ -8,24 +7,18 @@ class App extends Component {
     super();
 
     this.state = {
-      monsters: [
-        {
-          name: 'Frankenstein',
-          id: 'asc1'
-        },
-        {
-          name: 'Dracula',
-          id: 'asc2'
-        },
-        {
-          name: 'Zombie',
-          id: 'asc3'
-        }
-      ]
+      monsters: []
     }
   }
 
-//JSX uses classname to dis
+  componentDidMount(){
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(response => response.json())
+    .then(users => this.setState({ monsters: users }));
+  }
+
+//JSX uses classname to distinguish
+//render comes inbuilt with React.component
   render() {
     return (
       <div className="App">
