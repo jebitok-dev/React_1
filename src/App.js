@@ -1,5 +1,8 @@
 import React, { Component } from 'react'; //enables JSX 
-import './App.css';
+
+import { CardList } from './Components/card-list/card-list.component';
+
+ import './App.css';
 
 //using class gives access to state 
 class App extends Component {
@@ -22,6 +25,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+      <CardList name="Jebitok"/>
       {
         this.state.monsters.map(monster => <h1 key={monster.id}> { monster.name } </h1>)
       }
