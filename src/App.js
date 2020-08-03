@@ -2,7 +2,9 @@ import React, { Component } from 'react'; //enables JSX
 
 import { CardList } from './Components/card-list/card-list.component';
 
- import './App.css';
+import { SearchBox } from './Components/search-box/search-box.components';
+
+import './App.css';
 
 //using class gives access to state 
 class App extends Component {
@@ -10,7 +12,8 @@ class App extends Component {
     super();
 
     this.state = {
-      monsters: []
+      monsters: [],
+      searchField: ''
     }
   }
 
@@ -23,9 +26,19 @@ class App extends Component {
 //JSX uses classname to distinguish
 //render comes inbuilt with React.component
   render() {
+    const { monsters, searchField } = this.state;
     return (
       <div className="App">
-      <CardList monsters={this.state.monsters}/>
+        <input
+          type='search'
+          placeholder='search monsters'
+          onChange={e => this.setState({ searchField: e.target.value })}
+        />
+        <SearchBox 
+          placeholder='search monsters'
+          handleChange={e => this.setState({ searchField: e.target.value })}
+        />
+        <CardList monsters={this.state.monsters}/>
     </div>
     );
   }
