@@ -11,23 +11,33 @@
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
     
         <script>
-        const Person = () => {
+        const Person = (props) => {
             return React.createElement("div", {}, [
-                React.createElement("h1", {}, 'Sharon'),
-                React.createElement("p", {}, 'Developer')
+                React.createElement("h1", {}, props.name),
+                React.createElement("p", {}, props.occupation)
             ])
         }
 
-        const App = () => {  
-        return React.createElement("div", {}, 
+        class App extends React.Component {
+            render() {
+                return React.createElement("div", {}, 
         [
         React.createElement('h1', {}, 'REACT IS RENDERED!!!'),
-        React.createElement(Person),
-        React.createElement(Person),
-        React.createElement(Person)
-        ]
-            );
-        };
+        React.createElement(
+            Person, 
+            { name: 'Sharon', occupation: 'developer'}
+            ),
+        React.createElement(
+            Person,
+            { name: 'Ijay', occupation: 'developer'}
+            ),
+        React.createElement(
+            Person, 
+            { name: 'Paul', occupation: 'designer'}
+            )
+        ]);
+            }
+        }
 
         ReactDOM.render(React.createElement(App), document.getElementById('root'))
     </script>
