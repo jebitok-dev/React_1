@@ -9,7 +9,7 @@ import './App.css';
 //using class gives access to state 
 class App extends Component {
   constructor() {
-    super();
+    super(); //extends
 
     this.state = {
       monsters: [],
@@ -23,6 +23,10 @@ class App extends Component {
     .then(users => this.setState({ monsters: users }));
   }
 
+  handleChange = e => {
+    this.setState({ searchField: e.target.value })
+  }
+
 //JSX uses classname to distinguish
 //render comes inbuilt with React.component
   render() {
@@ -32,16 +36,19 @@ class App extends Component {
       )
     return (
       <div className="App">
-        <input
+        <h1>Monster Rolodex</h1>
+        {/* <input
           type='search'
           placeholder='search monsters'
           onChange={e => this.setState({ searchField: e.target.value })}
-        />
+        /> */}
         <SearchBox 
           placeholder='search monsters'
-          handleChange={e => this.setState({ searchField: e.target.value })}
+          handleChange={this.handleChange}
         />
-        <CardList monsters={filteredMonsters}/>
+        <CardList 
+          monsters={filteredMonsters}
+        />
     </div>
     );
   }
